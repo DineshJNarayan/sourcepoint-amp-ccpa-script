@@ -1,0 +1,53 @@
+<!doctype html>
+<html amp lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Hello, AMPs</title>
+        <script async src="https://cdn.ampproject.org/v0.js"></script>
+        <!-- required for the amp-consent component -->
+        <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
+        <!-- required to sync auth_id with publishers domain and Google.com domain -->
+        <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    </head>
+    <body>
+        <h1>Welcome to the mobile web 07092021</h1>
+        <amp-analytics>
+            <script type=application/json>
+            {
+              "linkers":{"authId":{"ids":{"_a":"CLIENT_ID(AMP-CONSENT)"},"enabled":true,"proxyOnly":false}},"cookies":{"enabled":true,"authId":{"value":"LINKER_PARAM(authId, _a)"}}
+            }
+            </script>
+        </amp-analytics>
+        <amp-consent id="consent" layout="nodisplay">
+            <script type="application/json">
+                {
+                    "consentInstanceId": "Sourcepoint",
+                    "consentRequired": "remote",
+                    "checkConsentHref": "https://sp-cdn.sp-demo.com/ccpa/consent/amp",
+                    "promptUISrc": "https://sp-cdn.sp-demo.com/amp/index.html?authId=CLIENT_ID",
+                    "postPromptUI": "consent-ui",
+                    "uiConfig": {"overlay":true},
+                    "cookies": {
+                        "enabled": true,
+                        "AMP-CONSENT": {    "value": "LINKER_PARAM(authId, _a)" }
+                    },
+                    "clientConfig": {
+                        "accountId": 1732,
+                        "siteHref": "https://amp.newscriptdemo.com",
+                        "siteId": 19118,
+                        "isCCPA": true,
+                        "stageCampaign": false,
+                        "privacyManagerId": "613a397d7bb7502c6f4548e5",
+                        "getDnsMsgMms": true,
+                        "alwaysDisplayDns": false,
+                        "showNoticeUntilAction": true,
+                        "targetingParams": {    "color": "blue"  }
+                    }
+                }
+            </script>
+        </amp-consent>
+        <div id="consent-ui">
+            <button on="tap:consent.prompt(consent=SourcePoint)">Do Not Sell My Info</button>
+        </div>
+    </body>
+</html>
